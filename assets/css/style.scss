@@ -1,0 +1,292 @@
+@import './global.scss';
+
+@mixin textHeader($fontWeight: 400, $fz: 3rem, $textTranform:uppercase, $color: #FFF4F4, $margin: 0) {
+  font-weight: $fontWeight;
+  font-size: $fz;
+  text-transform: $textTranform;
+  color: $color;
+  margin: $margin;
+}
+
+@mixin textContent($fz: 1.2rem , $fw: 400, $color: #000) {
+  font-weight: $fw;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin slider($position: left, $color: #000, $bgColor: #fff, $width: 21.5rem) {
+  height: 3rem;
+  width: $width;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  color: $color;
+  justify-content: center;
+  background-color: $bgColor;
+  @if($position == 'left') {
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+  }
+  @if($position == 'right') {
+    border-top-left-radius: 3rem;
+    border-bottom-left-radius: 3rem;
+  }
+}
+
+@mixin thumbSlider($percent: 70) {
+  background-color: $primary--yellow;
+  height: 100%;
+  width: calc(100% / 100 * $percent);
+}
+
+#container {
+  max-width: 60rem;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  border: 2px solid $primary--black;
+  .header {
+    height: 17rem;
+    width: 100%;
+    background-color: $primary--yellow;
+    position: absolute;
+    top: 1.3rem;
+    left: 0;
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    padding: 0 4.3rem 0 4.7rem;
+    justify-content: center;
+    // @include response(ipad) {
+    //   background-color: blue;
+    // }
+    // @include response(mobile) {
+    //   background-color: red;
+    // }
+    .left__header {
+      &--title {
+        @include textHeader(400, 3rem, uppercase, #FFF4F4, 0);
+        white-space: nowrap;
+      }
+      &--des {
+        @include textHeader(400, 1.8rem, uppercase, $primary--white, 0.5rem 0 0)
+      }
+    }
+  }
+  
+  .left__container {
+    width: 24rem;
+    background-color: $primary--blue;
+    padding-top: 20rem;
+
+    .infomation__slide {
+      @include slider(left, $primary--black, $primary--white);
+    }
+
+    .list__information {
+      display: flex;
+      flex-direction: column;
+      margin: 1.6rem 2.2rem 0 4.5rem;
+      gap: 1.3rem;
+
+      &--item {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.2rem;
+
+        .list__information--des,.list__information--title {
+          font-weight: 400;
+          font-size: 1.4rem;
+          line-height: 1.6rem;
+          color: $primary--white;
+          width: 100%;
+          margin: 0;
+        }
+
+        .list__information--title {
+          font-weight: bold;
+        }
+
+      }
+    }
+
+    .skills {
+      .skills__slider {
+        margin-top: 3rem;
+        @include slider(left, $primary--black, $primary--white);
+      }
+      
+      .list__skills {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        margin: 1.6rem 2.2rem 0 4.5rem;
+        .skill__items {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          &--title {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 12px;
+            color: #FFFFFF;
+            margin: 0;
+          }
+          &--range {
+            height: 1.2rem;
+            width: 19rem;
+            border: 0.1rem solid $primary--yellow;
+            .item__range--thumb--70 {
+              @include thumbSlider(70);
+            }
+            .item__range--thumb--90 {
+              @include thumbSlider(90);
+            }
+            .item__range--thumb--80 {
+              @include thumbSlider(80);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .right__container {
+    width: calc(100% - 24rem);
+    padding-top: 20rem;
+    background-color: $primary--white;
+
+    .education {
+      margin-left: 2.5rem;
+      .education__slider {
+        @include slider(right, $primary--white, $primary--red, 33rem);
+      }
+
+      .list__education {
+        margin: 1.6rem 0 1.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+        .education__item {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          &--left {
+            font-weight: 400;
+            font-size: 1.2rem;
+            line-height: 1.4rem;
+            color: $primary--black;
+            display: inline-block;
+            max-width: 7rem;
+          }
+          &--right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            .item__right--title {
+              @include textContent(1.4rem, 700, $primary--black)
+            }
+            .item__right--des {
+              @include textContent(1.3rem, 400, $primary--black)
+            }
+          }
+        }
+      }
+    }
+
+    .others {
+      .others__slider {
+        @include slider(left, $primary--white, $primary--yellow, 26rem);
+      }
+
+      .list__others {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: flex-start;
+        padding-left: 2.8rem;
+        margin: 1.4rem 2rem;
+        .others__item {
+          display: flex;
+          align-items: center;
+          gap: 1.4rem;
+          &--left {
+            font-weight: 400;
+            font-size: 1.2rem;
+            line-height: 1.4rem;
+            text-align: center;
+            color: $primary--black;
+            display: inline-block;
+            width: 6.4rem;
+          }
+          &--right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            .item__right--title {
+              @include textContent(1.4rem, 700, $primary--black);
+              margin: 0;
+            }
+            .item__right--des {
+              text-decoration: none;
+              @include textContent(1.3rem, 400, $primary--black);
+            }
+          }
+        }
+      }
+    }
+
+    .experience__slider--space {
+      @include slider(right, $primary--white, $primary--red, 33rem);
+      margin: 2.8rem 0 1.8rem 2.5rem;
+    }
+
+    .experience {
+      .experience__slider {
+        @include slider(left, $primary--white, $primary--yellow, 26rem);
+      }
+
+      .list__experience {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: flex-start;
+        padding-left: 2.5rem;
+        margin: 1.4rem 0;
+        .experience__item {
+          display: flex;
+          align-items: center;
+          gap: 1.4rem;
+          &--left {
+            font-weight: 400;
+            font-size: 1.2rem;
+            line-height: 1.4rem;
+            text-align: center;
+            color: $primary--black;
+            display: inline-block;
+            width: 7rem;
+          }
+          &--right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            .item__right--title {
+              @include textContent(1.4rem, 700, $primary--black);
+              margin: 0;
+            }
+            .item__right--des {
+              text-decoration: none;
+              @include textContent(1.3rem, 400, $primary--black);
+            }
+          }
+        }
+      }
+    }
+  }
+}

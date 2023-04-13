@@ -1,0 +1,37 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+*{
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+$primary--yellow: #F1BA48;
+$primary--red: #D53C3C;
+$primary--blue: #23345C;
+$primary--black: #000000;
+$primary--white: #FFFFFF;
+
+@mixin response($breakpoint) {
+  @if($breakpoint == mobile) {
+    @media (max-width: 479px) {
+      @content;
+    }
+  }
+  @if($breakpoint == ipad) {
+    @media (min-width: 480px) and (max-width: 768px) {
+      @content;
+    }
+  }
+  @if($breakpoint == laptop) {
+    @media (min-width: 769px) {
+      @content;
+    }
+  }
+}
